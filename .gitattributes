@@ -1,2 +1,2 @@
-# Enforce Unix end of line for shell scrips
+# Enforce Unix end of line for shell scripts
 *.sh text eol=lf
