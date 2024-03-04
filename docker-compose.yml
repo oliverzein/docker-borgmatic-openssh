@@ -2,7 +2,7 @@ version: '3'
 services:
   borgmatic:
     image: ghcr.io/borgmatic-collective/borgmatic
-    container_name: borgmatic
+    container_name: borgmatic-sshd
     volumes:
       - ${VOLUME_SOURCE}:/mnt/source:ro            # backup source
       - ${VOLUME_TARGET}:/mnt/borg-repository      # backup target
