@@ -1,1 +1,2 @@
+# Enforce Unix end of line for shell scrips
 *.sh text eol=lf
