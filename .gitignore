@@ -5,3 +5,4 @@ data/repository/
 .env
 data/borgmatic.d/
 !data/borgmatic.d/config.yaml
+localtest/
