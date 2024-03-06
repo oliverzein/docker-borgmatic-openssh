@@ -1,8 +1,8 @@
 version: '3'
 services:
   borgmatic:
-    image: ghcr.io/borgmatic-collective/borgmatic
-    container_name: borgmatic-sshd
+    image: borgmatic-sshd:0.0.1
+    container_name: borgmatic-openssh
     volumes:
       - ${VOLUME_SOURCE}:/mnt/source:ro            # backup source
       - ${VOLUME_TARGET}:/mnt/borg-repository      # backup target
@@ -11,6 +11,9 @@ services:
       - ${VOLUME_BORG_CONFIG}:/root/.config/borg   # config and keyfiles
       - ${VOLUME_SSH}:/root/.ssh                   # ssh key for remote repositories
       - ${VOLUME_BORG_CACHE}:/root/.cache/borg     # checksums used for deduplication
+      - ${VOLUME_SSHKEYS}:/sshdkeys                # keys used by sshd
     environment:
       - TZ=${TZ}
       - BORG_PASSPHRASE=${BORG_PASSPHRASE}
+    ports:
+      - "2222:22"

@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+          "type": "docker-build",
+          "label": "docker-build",
+          "platform": "python",
+          "dockerBuild": {
+            "context": "${workspaceFolder}",
+            "tag": "borgmatic-sshd:0.0.1"
+          }
+        }
+      ]
+  }

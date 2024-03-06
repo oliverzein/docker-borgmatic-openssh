@@ -81,6 +81,9 @@ if [ $# -eq 0 ]; then
     /usr/local/bin/borgmatic --stats -v 0 2>&1
   fi
 
+  # setup and start sshd
+  source /sshd.sh
+
   # Test crontab
   supercronic -test /etc/borgmatic.d/crontab.txt || exit 1
 
@@ -101,3 +104,4 @@ else
     exec borgmatic "$@"
   fi
 fi
+
