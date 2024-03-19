@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>borgmatic-sshd</Name>
+  <Repository>ghcr.io/oliverzein/borgmatic-sshd</Repository>
+  <Registry>http://ghcr.io/oliverzein/borgmatic-sshd</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/99218-support-borgmatic/</Support>
+  <Project>http://ghcr.io/oliverzein/borgmatic-sshd</Project>
+  <Overview>borgmatic is simple, configuration-driven backup software for servers and workstations. Protect your files with client-side encryption. Backup your databases too. Monitor it all with integrated third-party services. This fork adds openssh server to enable remote client backups.</Overview>
+  <Category>Backup:</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/Sdub76/unraid_docker_templates/master/borgmatic.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Sdub76/unraid_docker_templates/main/images/borgmatic.png</Icon>
+  <ExtraParams>--cap-add SYS_ADMIN</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1709803304</DateInstalled>
+  <DonateText>If you like my work please consider Donating.</DonateText>
+  <DonateLink>https://paypal.me/ScottWaun</DonateLink>
+  <Requires/>
+  <Config Name="Backup Source (Read-only)" 
+    Target="/mnt/source" 
+    Default="/mnt" 
+    Mode="ro" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt</Config>
+  <Config Name="Flash Drive (Read-only)" 
+    Target="/boot" 
+    Default="/boot" 
+    Mode="ro" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="false" 
+    Mask="false">/boot</Config>
+  <Config Name="Repository (Backup Destination)" 
+    Target="/mnt/borg-repository" 
+    Default="/mnt/user/Backup/borg" 
+    Mode="rw,slave" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt/user/Backup/borg</Config>  
+  <Config Name="Cache" 
+    Target="/root/.cache/borg" 
+    Default="/mnt/disks/borg_backup/cache" 
+    Mode="rw,slave" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt/user/appdata/borgmatic/cache</Config>
+  <Config Name="Borgmatic config file(s) + crontab.txt" 
+    Target="/etc/borgmatic.d" 
+    Default="/mnt/user/appdata/borgmatic/borgmatic.d"
+    Mode="rw" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt/user/appdata/borgmatic/borgmatic.d</Config>
+  <Config Name="Borgmatic state files" 
+    Target="/root/.borgmatic" 
+    Default="/mnt/user/appdata/borgmatic/.borgmatic" 
+    Mode="rw" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt/user/appdata/borgmatic/.borgmatic</Config>
+  <Config Name="Config and keyfiles" 
+    Target="/root/.config/borg" 
+    Default="/mnt/user/appdata/borgmatic/.config/borg" 
+    Mode="rw" 
+    Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt/user/appdata/borgmatic/.config/borg</Config>
+  <Config Name="SSH key for remote repositories" 
+    Target="/root/.ssh" 
+    Default="/mnt/user/appdata/borgmatic/.ssh" 
+    Mode="rw" Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="false" 
+    Mask="false">/mnt/user/appdata/borgmatic/.ssh</Config>
+  <Config Name="Keys used by sshd" 
+    Target="/sshdkeys"
+    Default="/mnt/user/appdata/borgmatic/sshdkeys" 
+    Mode="rw" Description="" 
+    Type="Path" 
+    Display="always" 
+    Required="true" 
+    Mask="false">/mnt/user/appdata/borgmatic/sshdkeys</Config>
+  <Config Name="TZ" 
+    Target="TZ" 
+    Default="America/New_York" 
+    Mode="" 
+    Description="" 
+    Type="Variable" 
+    Display="always" 
+    Required="false" 
+    Mask="false">Europe/Berlin</Config>
+  <Config Name="BORG_PASSPHRASE" 
+    Target="BORG_PASSPHRASE" 
+    Default="" 
+    Mode="" 
+    Description="Repository encryption key passphrase" 
+    Type="Variable" 
+    Display="advanced" 
+    Required="false" 
+    Mask="false"></Config>
+  <Config Name="/dev/fuse" 
+    Target="" 
+    Default="/dev/fuse" 
+    Mode="" 
+    Description="" 
+    Type="Device" 
+    Display="advanced" 
+    Required="false" 
+    Mask="false">/dev/fuse</Config>
+  <Config Name="PUID" 
+    Target="PUID" 
+    Default="99" 
+    Mode="" 
+    Description="UID for permissions.  Do not change unless you know what you're doing." 
+    Type="Variable" 
+    Display="advanced-hide" 
+    Required="true" 
+    Mask="false">99</Config>
+  <Config Name="PGID" 
+    Target="PGID" 
+    Default="100" 
+    Mode="" 
+    Description="GID for permissions.  Do not change unless you know what you're doing." 
+    Type="Variable" 
+    Display="advanced-hide" 
+    Required="true" 
+    Mask="false">100</Config>
+</Container>

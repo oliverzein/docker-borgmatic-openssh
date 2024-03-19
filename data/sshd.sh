@@ -1,7 +1,7 @@
 #!/bin/bash
 # setup and start the sshd server
 
-SSH_KEY_DIR=/sshkeys
+SSH_KEY_DIR=/sshdkeys
 
 # Create SSH-Host-Keys on persistent storage, if not exist
 echo Processing: SSH-Host-Keys

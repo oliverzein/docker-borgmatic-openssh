@@ -91,6 +91,38 @@ You also have the option to use Docker Secrets for more sensitive information. T
 
 For every environment variable like `BORG_PASSPHRASE`, you can create a corresponding secret file, named as `BORG_PASSPHRASE_FILE`. Place the content of the secret inside this file. The startup script will automatically look for corresponding `_FILE` secrets if the environment variables are not set and load them.
 
+## SSHD
+
+| Volume      | Description          |
+| ----------- | -------------------- |
+| `/sshdkeys` | Keys related to sshd |
+
+### Access rights
+
+SSH connection must be made using the user `borg`
+
+```
+uid=1000(borg) gid=100(users) groups=100(users)
+```
+
+```
+drwxr-xr-x 3 borg borg 4096 Mar 12 11:44 sshdkeys
+-rw-r--r-- 1 borg borg 644 Mar 12 11:44 authorized\_keys
+```
+
+The directory `/sshdkeys/host` will be auto-generated during container creation. Put your client public keys in `/sshdkeys/authorized-keys`.
+
+Example authorized\_keys entry:
+
+```
+restrict,command="borg serve --restrict-to-path /mnt/borg-repository" ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyyVFUCIVil5xsjlWcQl9KaK/oH6irgs72hKtcYEiOE0hdD7O4Bs5jJQliXr7WenX2oJNLtraNuCIngraP7kiJOvYYinQVgYrMSWpQVKGe2jtQA/sSnbu8epb58jx2ue4VYdP7IaWOHqdh6zLR+bhM6AiotTQoZC2BbxJYjbopJ2mUkVkTPVzuZ/T29gzXSiS8SXuBDUJzVtpkIgJge+3F+96bASFXTuel2LCLxQmxtzvBLC4+nCfVj4Fahd6gLx2bW4MxBrNTAfg8ZIGp4LJPTnI3i4a6zdtrmiSr2CIT8TqAqNaS+/zbawNkXC1IsPHubRXK9HoOT3NP4RCTwWs4rkWCyxKOAcra99CjXxQ9QqNqoWCfkmp00l5kU+teVkEJ0HaniO1GGtTIeuTIdXG1cr5j7LwlGiZfGx3jaqcpeVCub52kIBnr2hZAS2QVrUThx1QJjOaXTZai7Ql0Q9K5LX0y5jPpioF9BGKYm8Cs48plcQyauZ5RGbJL7zEIwwc= oliverzein@GeekomIT12
+```
+
+Example remote connection:
+```
+borglist ssh://borg@192.168.0.31:2222/mnt/borg-repository/
+```
+
 ## Using Apprise for Notifications
 
 To enhance your experience with Borgmatic, we'll show you a quick example of how to use Apprise for notifications. Apprise is a versatile tool that integrates with a variety of services and is built into Borgmatic. With the upcoming version 1.8.4 also natively. Here's a quick example of how you can use Apprise.

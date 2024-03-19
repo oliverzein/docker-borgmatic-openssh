@@ -3,15 +3,15 @@ AddressFamily any
 ListenAddress 0.0.0.0
 ListenAddress ::
 
-HostKey /sshkeys/host/ssh_host_rsa_key
-HostKey /sshkeys/host/ssh_host_ed25519_key
+HostKey /sshdkeys/host/ssh_host_rsa_key
+HostKey /sshdkeys/host/ssh_host_ed25519_key
 
 PermitRootLogin no
 StrictModes yes
 MaxSessions 20
 
 PubkeyAuthentication yes
-AuthorizedKeysFile	/sshkeys/authorized_keys
+AuthorizedKeysFile	/sshdkeys/authorized_keys
 
 LogLevel INFO
 

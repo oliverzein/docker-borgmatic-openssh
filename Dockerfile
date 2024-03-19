@@ -10,7 +10,7 @@ VOLUME /root/.ssh
 VOLUME /root/.cache/borg
 
 # Volume for SSH-Host-Keys
-VOLUME /sshkeys
+VOLUME /sshdkeys
 
 RUN apk add --update --no-cache \
     bash \

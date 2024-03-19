@@ -2,8 +2,11 @@ source_directories:
     - /mnt/source
 repositories:
     - path: /mnt/borg-repository
+
 one_file_system: true
 
+# Very important as unRAID does not have persistent inode values
+files_cache: mtime,size
 
 #   Passphrase is set in variable $BORG_PASSPHRASE
 #   encryption_passphrase: "DoNotMissToChangeYourPassphrase"
