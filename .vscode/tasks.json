@@ -7,7 +7,7 @@
           "platform": "python",
           "dockerBuild": {
             "context": "${workspaceFolder}",
-            "tag": "borgmatic-sshd:0.0.1"
+            "tag": "borgmatic-sshd:0.1.0"
           }
         }
       ]
